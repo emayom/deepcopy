@@ -4,7 +4,7 @@
  * @returns {boolean} `value`가 TypedArray라면 `true`를, 아니라면 `false`를 리턴한다.
  */
 const isTypedArray = value => {
-    const re = /^(?:Int(?:8|16))|(?:Uint(?:8|16|32))|(?:Float(?:32|64))|(?:Big(?:Int|Unit)(?:64))(Clamped)?Array$/;
+    const re = /^(?:Int(?:8|16|32))|(?:Uint(?:8|16|32))|(?:Float(?:32|64))|(?:Big(?:Int|Uint)64)(Clamped)?Array$/;
     return re.test(value?.constructor.name);
 };
 
