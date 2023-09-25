@@ -1,70 +1,39 @@
 import deepCopy from '../src/deepCopy';
-import copyArray from '../src/copyArray';
-import { Faker, faker } from '@faker-js/faker';
 
-describe("copy", () => {
-  const array = faker.datatype.array({ min: 3, max: 5 });
-  const object = faker.getMetadata();;
-  const date = faker.date.anytime();
-  const set = new Set();
-  const map = new Map();
+describe("deepCopy", () => {
+  it("`deepCopy`는 `객체 배열`에 원본과의 참조가 끊어진 깊은 복사를 수행한다.", ()=>{
+    const array = [
+      {
+        foo: { b: { c: { d: { e: 'f'} } } },
+        bar: {},
+      }
+    ];
+    const cloned = deepCopy(array);
 
-  const nestedObject = {
-    string: faker.person.fullName(),
-    set: set,
-    map: map,
-    date: date,
-    meta: object,
-    array: array,
-  }
-
-  it("배열을 깊은 복사한다.", ()=>{
-    const _1dArray = faker.datatype.array({ min: 3, max: 5 });
-    const _2dArray = new Array(1000).fill(_1dArray);
-    const arrayOfObject = new Array(1000).fill(faker.getMetadata());
-
-    expect(copy.copyArray(_1dArray)).toStrictEqual(_1dArray);
-    expect(copy.copyArray(_2dArray)).toStrictEqual(_2dArray);
-    expect(copy.copyArray(arrayOfObject)).toStrictEqual(arrayOfObject);
+    expect(array === cloned).toBe(false);
+    expect(array[0].foo === cloned[0].foo).toBe(false);
+    expect(array[0].foo.b === cloned[0].foo.b).toBe(false);
+    expect(array[0].foo.b.c === cloned[0].foo.b.c).toBe(false);
   });
 
-  test("객체를 깊은 복사한다.", () => {
-    const object = faker.getMetadata();
-    const nestedObject = {
-      func: copy.isObject,
-      set: set,
-      map: map,
-      date: date,
-      array: array,
-      object: object,
+  test("`deepCopy`는 `중첩 객체`에 원본과의 참조가 끊어진 깊은 복사를 수행한다.", () => {
+    const nested = {
+      func: ()=>{},
+      set: new Set(['a', {foo: 2}]),
+      map: new Map([
+        [1, "one"],
+        [2, "two"],
+        [3, "three"],
+      ]),
+      date: new Date(),
+      array: [ 'a', 'r', 'r', 'a', 'y' ],
+      object: { foo: { b: { c: { d: { e: 'f'} } } } },
     };
+    const cloned = deepCopy(nested);
 
-    expect(copy.copyObject(object)).toStrictEqual(object);
-    expect(copy.copyObject(nestedObject)).toStrictEqual(nestedObject);
+    expect(nested === cloned).toBe(false);
+    expect(nested.func === cloned.func).toBe(false);
+    expect(nested.map === cloned.map).toBe(false);
+    expect(nested.object.foo.b.c === cloned.object.foo.b.c).toBe(false);
   });
-
-  test("Date 객체를 깊은 복사한다.", () => {
-    const date = faker.date.anytime();
-    expect(copyDate(date)).toStrictEqual(date);
-  });
-
-  // // Deep Copy
-  // test("toStrictEqual", () => {
-  //   const origin = {
-  //     name: "foo",
-  //     age: undefined,
-  //     items: ["a", "b", "b", [1, 2, 3], new Object()],
-  //     set: new Set(),
-  //     map: new Map(),
-  //   };
-  //   const compare = origin;
-  //   expect(copy.deepCopy(origin)).toStrictEqual(compare);
-  // });
-
-  // test("toStrictEqual", () => {
-  //   const origin = { level1: { level2: { level3: function () {} } } };
-  //   const compare = origin;
-  //   expect(copy.deepCopy(origin)).toStrictEqual(compare);
-  // });
 });
-
