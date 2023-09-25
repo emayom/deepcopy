@@ -1,13 +1,13 @@
 /**
+ * `Array`를 복사한다. 
  * @param {Array}
- * @param {Function} 
  * @returns {Array}
  */
-const copyArray = (source, deepCopy) => {
+const copyArray = (source) => {
     return source.reduce((a,c)=>{ 
-        a.push( (deepCopy? deepCopy(c) : c) ); 
-        return a; 
-    }, []);
+                a.push(c); 
+                return a; 
+            }, []);
 }
 
 export default copyArray;

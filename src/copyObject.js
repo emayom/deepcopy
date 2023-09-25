@@ -1,12 +1,11 @@
 /**
  * @param {Object}
- * @param {Function}
  * @returns {Object}
  */
-const copyObject = (source, deepCopy) => {
+const copyObject = (source) => {
     return Object.keys(source)
                     .reduce((a,c) => { 
-                        a[c] = (deepCopy? deepCopy(source[c]) : source[c]); 
+                        a[c] = source[c]; 
                         return a; 
                     }, {});
 }

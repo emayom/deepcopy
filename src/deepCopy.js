@@ -3,7 +3,7 @@ import isSet from './isSet';
 import isMap from './isMap';
 import isDate from './isDate';
 import isArray from './isArray';
-import isObject from './isArray';
+import isObject from './isObject';
 import isSymbol from './isSymbol';
 import isRegExp from './isRegExp';
 import isWeakMap from './isWeakMap';
@@ -65,14 +65,27 @@ const copyValidations = [
     copy: copyTypedArray,
   },
 ];
+
 /**
  * 원본 객체에 대한 참조가 끊어진 깊은 복사를 수행한다.
  * @param {*} source 
  * @returns {*} 
  */
 const deepCopy = (source) => {
+  if(!(source instanceof Object)){
+    return source;
+  }
+
   for (const {validation, copy} of copyValidations) {
-    return validation(source)? copy(source, deepCopy) : source;
+    if(validation(source)){
+      const cloned = copy(source);
+     
+      for(let prop in cloned){
+        cloned[prop] = deepCopy(cloned[prop]);
+      }
+      
+      return cloned;
+    }
   }
 }
 
