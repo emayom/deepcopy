@@ -1,7 +1,7 @@
 /**
  * `Array`를 복사한다. 
- * @param {Array}
- * @returns {Array}
+ * @param {Array} source  
+ * @returns {Array} 복사된 `Array`를 리턴한다.
  */
 const copyArray = (source) => {
     return source.reduce((a,c)=>{ 
