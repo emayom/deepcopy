@@ -6,4 +6,3 @@
 const copyMap = source => new Map(source);
 
 export default copyMap;
-
