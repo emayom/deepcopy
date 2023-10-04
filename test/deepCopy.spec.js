@@ -25,6 +25,7 @@ describe("deepCopy", () => {
         [2, "two"],
         [3, "three"],
       ]),
+      re: /[\u0400-\u04FF]+/g,
       date: new Date(),
       array: [ 'a', 'r', 'r', 'a', 'y' ],
       object: { foo: { b: { c: { d: { e: 'f'} } } } },

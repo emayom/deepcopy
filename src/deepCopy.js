@@ -17,10 +17,9 @@ import copyDate from './copyDate';
 import copyArray from './copyArray';
 import copyObject from './copyObject';
 import copySymbol from './copySymbol';
-import copyWeakMap from './copyWeakMap';
-import copyWeakSet from './copyWeakSet';
 import copyFunction from './copyFunciton';
 import copyTypedArray from './copyTypedArray';
+import copyRegExp from './copyRegExp';
 
 /** */
 const copyValidations = [
@@ -49,12 +48,16 @@ const copyValidations = [
     copy: copyDate,
   },
   {
+    validation: isRegExp,
+    copy: copyRegExp,
+  },
+  {
     validation: isWeakMap,
-    copy: copyWeakMap,
+    copy: (source)=>source,
   },
   {
     validation: isWeakSet,
-    copy: copyWeakSet,
+    copy: (source)=>source,
   },
   {
     validation: isFunction,
@@ -62,7 +65,7 @@ const copyValidations = [
   },
   {
     validation: isTypedArray,
-    copy: copyTypedArray,
+    copy: (source)=> copyTypedArray(source, true),
   },
 ];
 
