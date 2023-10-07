@@ -1,12 +1,12 @@
-import isSymbol from "../src/isSymbol";
+import isSymbol from '../src/isSymbol';
 
-describe('isSymbol', ()=> {
-    it('Symbol이라면 `true`를 리턴한다.', ()=>{
-        expect(isSymbol(Symbol())).toBeTruthy();
-        expect(isSymbol(Object(Symbol()))).toBeTruthy();
+describe('isSymbol', () => {
+    it('Symbol이라면 `true`를 리턴한다.', () => {
+        expect(isSymbol(Symbol(''))).toBeTruthy();
+        expect(isSymbol(Object(Symbol('')))).toBeTruthy();
     });
 
-    it('Symbol이 아니라면 `false`를 리턴한다.', ()=>{
+    it('Symbol이 아니라면 `false`를 리턴한다.', () => {
         expect(isSymbol(1)).toBeFalsy();
         expect(isSymbol('a')).toBeFalsy();
         expect(isSymbol(true)).toBeFalsy();
@@ -19,6 +19,6 @@ describe('isSymbol', ()=> {
         expect(isSymbol(new WeakSet())).toBeFalsy();
         expect(isSymbol(new WeakMap())).toBeFalsy();
         expect(isSymbol(new Error())).toBeFalsy();
-        expect(isSymbol(function(){})).toBeFalsy();
+        expect(isSymbol(function func() {})).toBeFalsy();
     });
 });

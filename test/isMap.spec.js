@@ -1,11 +1,11 @@
 import isMap from '../src/isMap';
 
-describe('isMap', ()=> {
-    it('Map 객체라면 `true`를 리턴한다.', ()=>{
+describe('isMap', () => {
+    it('Map 객체라면 `true`를 리턴한다.', () => {
         expect(isMap(new Map())).toBeTruthy();
     });
 
-    it('Map 객체가 아니라면 `false`를 리턴한다.', ()=>{
+    it('Map 객체가 아니라면 `false`를 리턴한다.', () => {
         expect(isMap(1)).toBeFalsy();
         expect(isMap('a')).toBeFalsy();
         expect(isMap(true)).toBeFalsy();
@@ -17,7 +17,7 @@ describe('isMap', ()=> {
         expect(isMap(new WeakSet())).toBeFalsy();
         expect(isMap(new WeakMap())).toBeFalsy();
         expect(isMap(new Error())).toBeFalsy();
-        expect(isMap(Symbol())).toBeFalsy();
-        expect(isMap(function(){})).toBeFalsy();
-    })
+        expect(isMap(Symbol(''))).toBeFalsy();
+        expect(isMap(function func() {})).toBeFalsy();
+    });
 });

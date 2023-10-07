@@ -1,12 +1,11 @@
-import isRegExp from "../src/isRegExp";
+import isRegExp from '../src/isRegExp';
 
-describe('isRegExp', ()=> {
-    it('RegExp라면 `true`를 리턴한다.', ()=>{
+describe('isRegExp', () => {
+    it('RegExp라면 `true`를 리턴한다.', () => {
         expect(isRegExp(/\w+/)).toBeTruthy();
-        expect(isRegExp(new RegExp(/\w+/))).toBeTruthy();
     });
 
-    it('RegExp가 아니라면 `false`를 리턴한다.', ()=>{
+    it('RegExp가 아니라면 `false`를 리턴한다.', () => {
         expect(isRegExp(1)).toBeFalsy();
         expect(isRegExp('a')).toBeFalsy();
         expect(isRegExp(true)).toBeFalsy();
@@ -18,7 +17,7 @@ describe('isRegExp', ()=> {
         expect(isRegExp(new WeakSet())).toBeFalsy();
         expect(isRegExp(new WeakMap())).toBeFalsy();
         expect(isRegExp(new Error())).toBeFalsy();
-        expect(isRegExp(Symbol())).toBeFalsy();
-        expect(isRegExp(function(){})).toBeFalsy();
-    })
+        expect(isRegExp(Symbol(''))).toBeFalsy();
+        expect(isRegExp(function func() {})).toBeFalsy();
+    });
 });

@@ -1,11 +1,11 @@
 import isSet from '../src/isSet';
 
-describe('isSet', ()=> {
-    it('Set 객체라면 `true`를 리턴한다.', ()=>{
+describe('isSet', () => {
+    it('Set 객체라면 `true`를 리턴한다.', () => {
         expect(isSet(new Set())).toBeTruthy();
     });
 
-    it('Set 객체가 아니라면 `false`를 리턴한다.', ()=>{
+    it('Set 객체가 아니라면 `false`를 리턴한다.', () => {
         expect(isSet(1)).toBeFalsy();
         expect(isSet('a')).toBeFalsy();
         expect(isSet(true)).toBeFalsy();
@@ -17,7 +17,7 @@ describe('isSet', ()=> {
         expect(isSet(new WeakSet())).toBeFalsy();
         expect(isSet(new WeakMap())).toBeFalsy();
         expect(isSet(new Error())).toBeFalsy();
-        expect(isSet(Symbol())).toBeFalsy();
-        expect(isSet(function(){})).toBeFalsy();
-    })
+        expect(isSet(Symbol(''))).toBeFalsy();
+        expect(isSet(function func() {})).toBeFalsy();
+    });
 });

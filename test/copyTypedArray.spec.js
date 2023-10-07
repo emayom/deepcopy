@@ -1,11 +1,11 @@
 import copyTypedArray from '../src/copyTypedArray';
 
-describe("copyTypedArray", () => {
+describe('copyTypedArray', () => {
     const buffer = new ArrayBuffer(8);
     const original = new Int8Array(buffer, 1, 4);
     original[0] = 21;
 
-    it("`copyTypedArray`는 얕은 복사를 수행한다.", ()=>{
+    it('`copyTypedArray`는 얕은 복사를 수행한다.', () => {
         const cloned = copyTypedArray(original);
 
         expect(original === cloned).toBe(false);
@@ -17,7 +17,7 @@ describe("copyTypedArray", () => {
         expect(original.length === cloned.length).toBe(true);
     });
 
-    it("`copyTypedArray`는 깊은 복사를 수행한다.", ()=>{
+    it('`copyTypedArray`는 깊은 복사를 수행한다.', () => {
         const isDeep = true;
         const cloned = copyTypedArray(original, isDeep);
 
